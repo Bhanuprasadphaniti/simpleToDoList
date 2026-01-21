@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todolist</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #89f7fe, #66a6ff);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            width: 320px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        input {
+            width: 65%;
+            padding: 8px;
+        }
+
+        button {
+            padding: 8px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .add {
+            background: #007bff;
+            color: white;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        li {
+            background: #f2f2f2;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .done {
+            text-decoration: line-through;
+            color: gray;
+            background: #d4edda;
+        }
+
+        .finish {
+            background: green;
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Simple To Do List</h2>
+
+    <input type="text" id="task" placeholder="Enter task">
+    <button class="add" onclick="addTask()">Add</button>
+
+    <ul id="output"></ul>
+</div>
+
+<script>
+    let ip = document.getElementById("task");
+    let op = document.getElementById("output");
+
+    function addTask() {
+        if (ip.value === "") return;
+
+        let li = document.createElement("li");
+        li.textContent = ip.value;
+
+        let finish = document.createElement("button");
+        finish.textContent = "Finish";
+        finish.className = "finish";
+
+        finish.onclick = function () {
+            li.classList.toggle("done");
+        };
+
+        li.appendChild(finish);
+        op.appendChild(li);
+
+        ip.value = "";
+    }
+</script>
+
+</body>
+</html>
